@@ -1,5 +1,7 @@
 package hr.tvz.crnkovic.hardwareapp;
 
+import java.util.Objects;
+
 public class Hardware {
     protected enum HardwareType {
         CPU, GPU, MBO, RAM, STORAGE, OTHER
@@ -17,6 +19,23 @@ public class Hardware {
         this.price = price;
         this.type = type;
         this.amount= amount;
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (!(o instanceof Hardware)) return false;
+        Hardware hardware = (Hardware) o;
+        return getCode().equals(hardware.getCode());
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(getCode());
+    }
+
+    public HardwareDTO DTO(){
+        return new HardwareDTO(this.name, this.price);
     }
 
     public Integer getAmount(){
