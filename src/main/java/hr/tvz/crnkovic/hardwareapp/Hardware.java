@@ -9,13 +9,14 @@ public class Hardware {
     private String code;
     private Double price;
     private HardwareType type;
-    private static Integer amount;
+    private Integer amount;
 
-    public Hardware(String name, String code, Double price, HardwareType type) {
+    public Hardware(String name, String code, Double price, Integer amount, HardwareType type) {
         this.name = name;
         this.code = code;
         this.price = price;
         this.type = type;
+        this.amount= amount;
     }
 
     public Integer getAmount(){

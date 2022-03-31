@@ -13,8 +13,8 @@ public class HardwareRepositoryImpl implements HardwareRepository{
 
     public HardwareRepositoryImpl() {
         this.hardwareList = List.of(new Hardware[]
-                {new Hardware("slušalice", "0", 629.0, Hardware.HardwareType.OTHER),
-                new Hardware("motherboard", "1", 899.0, Hardware.HardwareType.MBO)});
+                {new Hardware("slušalice", "0", 629.0, 11, Hardware.HardwareType.OTHER),
+                new Hardware("motherboard", "1", 899.0, 8, Hardware.HardwareType.MBO)});
     }
 
     @Override
