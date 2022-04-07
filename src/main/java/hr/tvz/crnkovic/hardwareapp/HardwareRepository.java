@@ -9,4 +9,6 @@ public interface HardwareRepository {
     List<Hardware> findAll();
 
     Optional<Hardware> findByCode(String code);
+
+    void remove(String code);
 }

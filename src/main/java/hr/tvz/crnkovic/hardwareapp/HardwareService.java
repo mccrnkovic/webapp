@@ -5,6 +5,7 @@ import java.util.Optional;
 
 public interface HardwareService {
     List<HardwareDTO> findAll();
-    HardwareDTO findByCode(String code);
+    Optional<HardwareDTO> findByCode(String code);
     Optional<HardwareDTO> save(HardwareCommand command);
+    void remove(String code);
 }

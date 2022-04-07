@@ -25,8 +25,10 @@ public class Controller {
     }
 
     @GetMapping("one")
-    public HardwareDTO show(@RequestParam String code){
-        return hardwareService.findByCode(code);
+    public ResponseEntity<HardwareDTO> show(@PathVariable String code){
+        return hardwareService.findByCode(code)
+                .map(hardwareDTO -> ResponseEntity.status(HttpStatus.ACCEPTED).body(hardwareDTO))
+                .orElseGet(() -> ResponseEntity.status(HttpStatus.NOT_FOUND).build());
     }
 
     @PostMapping
@@ -35,6 +37,12 @@ public class Controller {
                 .map( hardwareDTO -> ResponseEntity.status(HttpStatus.CREATED).body(hardwareDTO)
                 )
                 .orElseGet( () -> ResponseEntity.status(HttpStatus.CONFLICT).build());
+    }
+
+    @DeleteMapping("/all")
+    public List<HardwareDTO> delete(@RequestParam String code){
+        hardwareService.remove(code);
+        return hardwareService.findAll();
     }
 
 }
