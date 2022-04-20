@@ -7,6 +7,7 @@ import org.springframework.web.bind.annotation.*;
 
 import javax.validation.Valid;
 import java.util.List;
+import java.util.Optional;
 
 @RestController
 @RequestMapping("/")
@@ -24,7 +25,7 @@ public class Controller {
         return hardwareService.findAll();
     }
 
-    @GetMapping("one/{code}")
+    @GetMapping("{code}")
     public ResponseEntity<HardwareDTO> show(@PathVariable String code){
         return hardwareService.findByCode(code)
                 .map(hardwareDTO -> ResponseEntity.status(HttpStatus.FOUND).body(hardwareDTO))
@@ -39,10 +40,10 @@ public class Controller {
                 .orElseGet( () -> ResponseEntity.status(HttpStatus.CONFLICT).build());
     }
 
-    @DeleteMapping("/all")
-    public List<HardwareDTO> delete(@RequestParam String code){
+    @ResponseStatus(HttpStatus.NO_CONTENT)
+    @DeleteMapping("{code}")
+    public void delete(@PathVariable String code){
         hardwareService.remove(code);
-        return hardwareService.findAll();
     }
 
 }
