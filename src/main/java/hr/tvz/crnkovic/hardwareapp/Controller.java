@@ -9,6 +9,8 @@ import javax.validation.Valid;
 import java.util.List;
 import java.util.Optional;
 
+
+@CrossOrigin(origins = "http://localhost:4200/")
 @RestController
 @RequestMapping("/")
 public class Controller {
@@ -20,12 +22,17 @@ public class Controller {
         this.hardwareService = hardwareService;
     }
 
-    @GetMapping("all")
+    @GetMapping("")
+    public String showLink(){
+        return "<a href=\"http://localhost:4200/\">Link</a>";
+    }
+
+    @GetMapping("hardware")
     public List<HardwareDTO> showAll(){
         return hardwareService.findAll();
     }
 
-    @GetMapping("{code}")
+    @GetMapping("hardware/{code}")
     public ResponseEntity<HardwareDTO> show(@PathVariable String code){
         return hardwareService.findByCode(code)
                 .map(hardwareDTO -> ResponseEntity.status(HttpStatus.FOUND).body(hardwareDTO))
