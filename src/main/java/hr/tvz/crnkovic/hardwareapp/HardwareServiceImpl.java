@@ -20,14 +20,14 @@ public class HardwareServiceImpl implements HardwareService {
     @Override
     public List<HardwareDTO> findAll() {
         return hardwareRepository.findAll().stream()
-                .map(hardware -> new HardwareDTO(hardware.getName(), hardware.getPrice()))
+                .map(hardware -> new HardwareDTO(hardware.getName(), hardware.getPrice(), hardware.getCode()))
                 .collect(Collectors.toList());
     }
 
     @Override
     public Optional<HardwareDTO> findByCode(String code) {
         Hardware hardware = hardwareRepository.findByCode(code).get();
-        HardwareDTO hardwareDTO = new HardwareDTO(hardware.getName(), hardware.getPrice());
+        HardwareDTO hardwareDTO = new HardwareDTO(hardware.getName(), hardware.getPrice(), hardware.getCode());
         return Optional.of(hardwareDTO);
     }
 

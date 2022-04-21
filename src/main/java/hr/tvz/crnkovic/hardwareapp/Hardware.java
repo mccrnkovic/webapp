@@ -35,7 +35,7 @@ public class Hardware {
     }
 
     public HardwareDTO DTO(){
-        return new HardwareDTO(this.name, this.price);
+        return new HardwareDTO(this.name, this.price, this.code);
     }
 
     public Integer getAmount(){

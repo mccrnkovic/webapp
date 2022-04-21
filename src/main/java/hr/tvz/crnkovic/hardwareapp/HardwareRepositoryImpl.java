@@ -19,11 +19,11 @@ public class HardwareRepositoryImpl implements HardwareRepository{
 
         this.hardwareList= new ArrayList<>();
         hardwareList.add(new Hardware("slušalice", "0",
-                629.0, 11, Hardware.HardwareType.OTHER));
+                229.0, 11, Hardware.HardwareType.OTHER));
         hardwareList.add(new Hardware("motherboard", "1",
                 899.0, 8, Hardware.HardwareType.MBO));
         hardwareList.add(new Hardware("grafička", "2",
-                399.0, 2, Hardware.HardwareType.GPU));
+                1399.0, 2, Hardware.HardwareType.GPU));
     }
 
     @Override

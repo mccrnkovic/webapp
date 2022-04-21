@@ -35,7 +35,7 @@ public class Controller {
     @GetMapping("hardware/{code}")
     public ResponseEntity<HardwareDTO> show(@PathVariable String code){
         return hardwareService.findByCode(code)
-                .map(hardwareDTO -> ResponseEntity.status(HttpStatus.FOUND).body(hardwareDTO))
+                .map(hardwareDTO -> ResponseEntity.status(HttpStatus.OK).body(hardwareDTO))
                 .orElseGet(() -> ResponseEntity.status(HttpStatus.NOT_FOUND).build());
     }
 
