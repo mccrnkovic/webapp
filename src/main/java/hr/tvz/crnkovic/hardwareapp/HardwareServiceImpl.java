@@ -11,16 +11,19 @@ import java.util.stream.Collectors;
 public class HardwareServiceImpl implements HardwareService {
 
     private HardwareRepositoryImpl hardwareRepository;
+    private JdbcHardwareRepository jdbcHardwareRepository;
 
     @Autowired
-    public HardwareServiceImpl(HardwareRepositoryImpl hardwareRepository) {
+    public HardwareServiceImpl(HardwareRepositoryImpl hardwareRepository,
+                               JdbcHardwareRepository jdbcHardwareRepository) {
         this.hardwareRepository = hardwareRepository;
+        this.jdbcHardwareRepository = jdbcHardwareRepository;
     }
 
     @Override
     public List<HardwareDTO> findAll() {
-        return hardwareRepository.findAll().stream()
-                .map(hardware -> new HardwareDTO(hardware.getName(), hardware.getPrice(), hardware.getCode()))
+        return jdbcHardwareRepository.findAll()
+                .stream().map(hardware -> hardware.DTO())
                 .collect(Collectors.toList());
     }
 
@@ -28,18 +31,17 @@ public class HardwareServiceImpl implements HardwareService {
     public Optional<HardwareDTO> findByCode(String code) {
         Hardware hardware = hardwareRepository.findByCode(code).get();
         HardwareDTO hardwareDTO = new HardwareDTO(hardware.getName(), hardware.getPrice(), hardware.getCode());
-        return Optional.of(hardwareDTO);
+        return Optional.of(this.jdbcHardwareRepository.findByCode(code).get().DTO());
     }
 
     @Override
     public Optional<HardwareDTO> save(HardwareCommand command) {
         Hardware hardware = new Hardware(command.getName(), command.getCode(), command.getPrice(),
                 command.getAmount(), command.getType());
-        if(!hardwareRepository.findAll().contains(hardware)){
-            hardwareRepository.findAll().add(hardware);
-            return Optional.of(hardware.DTO());
-        }
-        return null;
+        /*if(!hardwareRepository.findAll().contains(hardware)){
+            return Optional.of(hardwareRepository.save(hardware).DTO());
+        }*/
+        return Optional.of(this.jdbcHardwareRepository.save(hardware).DTO());
     }
 
     @Override

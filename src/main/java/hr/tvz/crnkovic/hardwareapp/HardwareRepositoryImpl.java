@@ -42,4 +42,10 @@ public class HardwareRepositoryImpl implements HardwareRepository{
                 .filter(hardware -> hardware.getCode().equals(code))
                 .findFirst().get());
     }
+
+    @Override
+    public Hardware save(Hardware hardware) {
+        this.hardwareList.add(hardware);
+        return hardware;
+    }
 }
