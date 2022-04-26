@@ -1,5 +1,6 @@
 package hr.tvz.crnkovic.hardwareapp;
 
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -8,7 +9,7 @@ import org.springframework.web.bind.annotation.*;
 import javax.validation.Valid;
 import java.util.List;
 import java.util.Optional;
-
+import java.util.logging.Logger;
 
 @CrossOrigin(origins = "http://localhost:4200/")
 @RestController
@@ -39,16 +40,16 @@ public class Controller {
                 .orElseGet(() -> ResponseEntity.status(HttpStatus.NOT_FOUND).build());
     }
 
-    @PostMapping
+    @PostMapping("hardware")
     public ResponseEntity<HardwareDTO> save(@Valid @RequestBody HardwareCommand command){
         return hardwareService.save(command)
-                .map( hardwareDTO -> ResponseEntity.status(HttpStatus.CREATED).body(hardwareDTO)
+                .map( hardwareDTO -> ResponseEntity.status(HttpStatus.ACCEPTED).body(hardwareDTO)
                 )
                 .orElseGet( () -> ResponseEntity.status(HttpStatus.CONFLICT).build());
     }
 
     @ResponseStatus(HttpStatus.NO_CONTENT)
-    @DeleteMapping("{code}")
+    @DeleteMapping("hardware/{code}")
     public void delete(@PathVariable String code){
         hardwareService.remove(code);
     }
