@@ -29,8 +29,6 @@ public class HardwareServiceImpl implements HardwareService {
 
     @Override
     public Optional<HardwareDTO> findByCode(String code) {
-        Hardware hardware = hardwareRepository.findByCode(code).get();
-        HardwareDTO hardwareDTO = new HardwareDTO(hardware.getName(), hardware.getPrice(), hardware.getCode());
         return Optional.of(this.jdbcHardwareRepository.findByCode(code).get().DTO());
     }
 
@@ -46,6 +44,6 @@ public class HardwareServiceImpl implements HardwareService {
 
     @Override
     public void remove(String code) {
-        hardwareRepository.remove(code);
+        jdbcHardwareRepository.remove(code);
     }
 }

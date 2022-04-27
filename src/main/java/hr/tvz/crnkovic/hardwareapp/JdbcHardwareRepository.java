@@ -53,7 +53,7 @@ public class JdbcHardwareRepository implements HardwareRepository {
 
     @Override
     public void remove(String code) {
-
+        this.jdbcTemplate.execute("DELETE FROM hardware WHERE code = "+code);
     }
 
     @Override
