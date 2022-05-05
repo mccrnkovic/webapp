@@ -1,16 +1,34 @@
 package hr.tvz.crnkovic.hardwareapp;
 
+import javax.persistence.*;
 import java.util.Objects;
 
+@Entity
+@Table(name = "hardware")
 public class Hardware {
+
+    public Hardware() {
+
+    }
+
     protected enum HardwareType {
         CPU, GPU, MBO, RAM, STORAGE, OTHER
     }
 
-    private String name;
+    @Id
+    @Column(name="code")
     private String code;
+
+    @Column(name="name")
+    private String name;
+
+    @Column(name="price")
     private Double price;
+
+    @Column(name="type")
     private HardwareType type;
+
+    @Column(name="amount")
     private Integer amount;
 
     public Hardware(String name, String code, Double price, Integer amount, HardwareType type) {
