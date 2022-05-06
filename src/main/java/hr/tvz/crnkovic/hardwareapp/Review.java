@@ -41,6 +41,6 @@ public class Review {
     }
 
     public ReviewDTO DTO() {
-        return new ReviewDTO(this.id, this.title, this.text);
+        return new ReviewDTO(this.id, this.title, this.text, this.rating);
     }
 }

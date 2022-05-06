@@ -17,10 +17,12 @@ import java.util.logging.Logger;
 public class Controller {
 
     private HardwareServiceImpl hardwareService;
+    private ReviewServiceImpl reviewService;
 
     @Autowired
-    public Controller(HardwareServiceImpl hardwareService) {
+    public Controller(HardwareServiceImpl hardwareService, ReviewServiceImpl reviewService) {
         this.hardwareService = hardwareService;
+        this.reviewService = reviewService;
     }
 
     @GetMapping("")

@@ -2,10 +2,13 @@ package hr.tvz.crnkovic.hardwareapp;
 
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
 
 import java.util.List;
+import java.util.Optional;
 import java.util.stream.Collectors;
 
+@Service
 public class ReviewServiceImpl implements ReviewService{
 
     private ReviewRepository reviewRepository;
@@ -23,9 +26,7 @@ public class ReviewServiceImpl implements ReviewService{
     }
 
     @Override
-    public ReviewDTO findById(Integer id) {
-        return reviewRepository.findById(id)
-                .map(review -> review.DTO())
-                .get();
+    public Optional<ReviewDTO> findById(Integer id) {
+        return Optional.of(reviewRepository.findById(id).get().DTO());
     }
 }

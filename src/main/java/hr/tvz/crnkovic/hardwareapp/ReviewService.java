@@ -1,8 +1,9 @@
 package hr.tvz.crnkovic.hardwareapp;
 
 import java.util.List;
+import java.util.Optional;
 
 public interface ReviewService {
     List<ReviewDTO> findAll();
-    ReviewDTO findById(Integer id);
+    Optional<ReviewDTO> findById(Integer id);
 }
