@@ -24,7 +24,7 @@ public class JdbcHardwareRepository implements HardwareRepository {
         this.jdbcTemplate = jdbcTemplate;
         this.simpleJdbcInsert = new SimpleJdbcInsert(jdbcTemplate)
                 .withTableName("hardware")
-                .usingGeneratedKeyColumns("code");
+                .usingGeneratedKeyColumns("hardware_code");
     }
 
     @Override
@@ -36,7 +36,7 @@ public class JdbcHardwareRepository implements HardwareRepository {
     private Hardware mapRowToHardware(ResultSet resultSet, int i) throws SQLException {
         return new Hardware(
                 resultSet.getString("name"),
-                resultSet.getString("code"),
+                resultSet.getString("hardware_code"),
                 resultSet.getDouble("price"),
                 resultSet.getInt("amount"),
                 Hardware.HardwareType.valueOf(resultSet.getString("type"))
@@ -47,13 +47,13 @@ public class JdbcHardwareRepository implements HardwareRepository {
     @Override
     public Optional<Hardware> findByCode(String code) {
         return Set.copyOf(jdbcTemplate
-                .query("SELECT * FROM hardware WHERE code = "+code, this::mapRowToHardware))
+                .query("SELECT * FROM hardware WHERE hardware_code = "+code, this::mapRowToHardware))
                 .stream().findFirst();
     }
 
     @Override
     public void remove(String code) {
-        this.jdbcTemplate.execute("DELETE FROM hardware WHERE code = "+code);
+        this.jdbcTemplate.execute("DELETE FROM hardware WHERE hardware_code = "+code);
     }
 
     @Override

@@ -4,6 +4,7 @@ package hr.tvz.crnkovic.hardwareapp;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import javax.transaction.Transactional;
 import java.util.List;
 import java.util.Optional;
 import java.util.stream.Collectors;
@@ -34,6 +35,12 @@ public class ReviewServiceImpl implements ReviewService{
 
     @Override
     public Optional<ReviewDTO> findById(Integer id) {
-        return Optional.of(reviewRepository.findById(id).get().DTO());
+        return Optional.of(reviewRepository.findById(id)
+                .get().DTO());
+    }
+
+    @Transactional
+    public void removeByHardwareCode(String code) {
+        reviewRepository.deleteAllByHardwareCode(code);
     }
 }

@@ -47,7 +47,7 @@ public class Controller {
         return reviewService.findAll();
     }
 
-    @GetMapping("hardware/{code}/reviews")
+    @GetMapping("reviews/{code}")
     public List<ReviewDTO> findReviewsByHardwareCode(@PathVariable String code){
         return reviewService.findAllByHardwareCode(code);
     }
@@ -63,6 +63,7 @@ public class Controller {
     @ResponseStatus(HttpStatus.NO_CONTENT)
     @DeleteMapping("hardware/{code}")
     public void delete(@PathVariable String code){
+        reviewService.removeByHardwareCode(code);
         hardwareService.remove(code);
     }
 
