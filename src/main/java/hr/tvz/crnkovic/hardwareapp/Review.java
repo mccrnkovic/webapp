@@ -1,8 +1,11 @@
 package hr.tvz.crnkovic.hardwareapp;
 
+import lombok.Data;
+
 import javax.persistence.*;
 
 @Entity
+@Data
 @Table(name = "review")
 public class Review {
 
@@ -20,9 +23,9 @@ public class Review {
     @Column(name="rating")
     private Integer rating;
 
-    @ManyToOne(targetEntity = Hardware.class)
-    @Column(name="hardwareCode")
-    private String hardwareCode;
+    @ManyToOne
+    @JoinColumn(name="hardware_code")
+    private Hardware hardware;
 
     public Review(Integer id, String title, String text, Integer rating) {
         this.id = id;
@@ -41,6 +44,6 @@ public class Review {
     }
 
     public ReviewDTO DTO() {
-        return new ReviewDTO(this.id, this.title, this.text, this.rating);
+        return new ReviewDTO(this.title, this.text, this.rating);
     }
 }

@@ -1,5 +1,5 @@
 CREATE TABLE IF NOT EXISTS hardware (
-    code INT NOT NULL PRIMARY KEY,
+    hardware_code INT NOT NULL PRIMARY KEY,
     name VARCHAR(100),
     price DOUBLE,
     type VARCHAR(7),
@@ -11,6 +11,6 @@ CREATE TABLE IF NOT EXISTS review (
     title VARCHAR(20),
     text VARCHAR(60),
     rating INT,
-    hardwareCode INT NOT NULL,
-    FOREIGN KEY (hardwareCode) REFERENCES hardware(code)
+    hardware_code INT NOT NULL,
+    FOREIGN KEY (hardware_code) REFERENCES hardware(hardware_code)
     );

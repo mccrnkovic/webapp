@@ -11,6 +11,7 @@ import java.util.Optional;
 public interface ReviewRepository extends JpaRepository<Review, Integer> {
 
     List<Review> findAll();
+    List<Review> findAllByHardwareCode(String code);
     Optional<Review> findById(Integer id);
 
 }

@@ -42,6 +42,16 @@ public class Controller {
                 .orElseGet(() -> ResponseEntity.status(HttpStatus.NOT_FOUND).build());
     }
 
+    @GetMapping("reviews")
+    public List<ReviewDTO> findAllReviews(){
+        return reviewService.findAll();
+    }
+
+    @GetMapping("hardware/{code}/reviews")
+    public List<ReviewDTO> findReviewsByHardwareCode(@PathVariable String code){
+        return reviewService.findAllByHardwareCode(code);
+    }
+
     @PostMapping("hardware")
     public ResponseEntity<HardwareDTO> save(@Valid @RequestBody HardwareCommand command){
         return hardwareService.save(command)

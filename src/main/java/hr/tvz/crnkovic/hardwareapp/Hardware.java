@@ -1,9 +1,13 @@
 package hr.tvz.crnkovic.hardwareapp;
 
+import lombok.Data;
+
 import javax.persistence.*;
+import java.util.List;
 import java.util.Objects;
 
 @Entity
+@Data
 @Table(name = "hardware")
 public class Hardware {
 
@@ -16,7 +20,7 @@ public class Hardware {
     }
 
     @Id
-    @Column(name="code")
+    @Column(name = "hardware_code")
     private String code;
 
     @Column(name="name")
@@ -26,10 +30,14 @@ public class Hardware {
     private Double price;
 
     @Column(name="type")
+    @Enumerated(EnumType.STRING)
     private HardwareType type;
 
     @Column(name="amount")
     private Integer amount;
+
+    @OneToMany()
+    private List<Review> reviewList;
 
     public Hardware(String name, String code, Double price, Integer amount, HardwareType type) {
         this.name = name;
