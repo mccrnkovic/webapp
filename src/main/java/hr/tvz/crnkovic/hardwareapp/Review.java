@@ -31,12 +31,7 @@ public class Review {
         this.id = id;
         this.title = title;
         this.text = text;
-        if (rating<1 || rating>5){
-            this.rating = rating;
-        }
-        else {
-            this.rating=-1;
-        }
+        this.rating = rating;
     }
 
     public Review() {
