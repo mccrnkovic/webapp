@@ -14,3 +14,21 @@ CREATE TABLE IF NOT EXISTS review (
     hardware_code INT NOT NULL,
     FOREIGN KEY (hardware_code) REFERENCES hardware(hardware_code)
     );
+
+CREATE TABLE IF NOT EXISTS `user` (
+    id INT NOT NULL PRIMARY KEY,
+    username VARCHAR(64) NOT NULL,
+    password VARCHAR(255) NOT NULL
+    );
+
+CREATE TABLE IF NOT EXISTS authority (
+    id INT NOT NULL PRIMARY KEY,
+    authority_name VARCHAR(16)
+    );
+
+CREATE TABLE IF NOT EXISTS user_has_authority (
+    user_id INT NOT NULL,
+    authority_id INT NOT NULL,
+    FOREIGN KEY (user_id) REFERENCES `user`(id),
+    FOREIGN KEY (authority_id) REFERENCES authority(id)
+    )

@@ -39,6 +39,6 @@ public class Review {
     }
 
     public ReviewDTO DTO() {
-        return new ReviewDTO(this.title, this.text, this.rating);
+        return new ReviewDTO(this.title, this.text, this.rating, this.hardware.getCode());
     }
 }

@@ -5,11 +5,13 @@ public class ReviewDTO {
     private String title;
     private String text;
     private Integer rating;
+    private String hardwareCode;
 
-    public ReviewDTO(String title, String text, Integer rating) {
+    public ReviewDTO(String title, String text, Integer rating, String hardwareCode) {
         this.title = title;
         this.text = text;
         this.rating = rating;
+        this.hardwareCode = hardwareCode;
     }
 
     public Integer getRating() {
