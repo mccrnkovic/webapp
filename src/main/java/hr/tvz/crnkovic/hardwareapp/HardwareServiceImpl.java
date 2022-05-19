@@ -35,7 +35,7 @@ public class HardwareServiceImpl implements HardwareService {
     @Override
     public Optional<HardwareDTO> save(HardwareCommand command) {
         Hardware hardware = new Hardware(command.getName(), command.getCode(), command.getPrice(),
-                command.getAmount(), command.getType());
+                command.getStock(), command.getType());
         /*if(!hardwareRepository.findAll().contains(hardware)){
             return Optional.of(hardwareRepository.save(hardware).DTO());
         }*/

@@ -62,7 +62,7 @@ public class JdbcHardwareRepository implements HardwareRepository {
         String name = hardware.getName();
         Double price = hardware.getPrice();
         String type = hardware.getType().toString();
-        Integer amount = hardware.getAmount();
+        Integer amount = hardware.getStock();
         this.jdbcTemplate.execute("INSERT INTO hardware VALUES " +
                 "("+code+",'"+name+"', "+price+", '"+type+"', "+amount+")");
         return hardware;

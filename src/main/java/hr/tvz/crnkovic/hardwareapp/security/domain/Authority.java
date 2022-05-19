@@ -1,4 +1,4 @@
-package security.domain;
+package hr.tvz.crnkovic.hardwareapp.security.domain;
 
 import javax.persistence.*;
 import javax.validation.constraints.NotNull;

@@ -3,7 +3,7 @@ CREATE TABLE IF NOT EXISTS hardware (
     name VARCHAR(100),
     price DOUBLE,
     type VARCHAR(7),
-    amount INT
+    stock INT
 );
 
 CREATE TABLE IF NOT EXISTS review (

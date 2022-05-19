@@ -1,4 +1,4 @@
-package security.user;
+package hr.tvz.crnkovic.hardwareapp.security.user;
 
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
 

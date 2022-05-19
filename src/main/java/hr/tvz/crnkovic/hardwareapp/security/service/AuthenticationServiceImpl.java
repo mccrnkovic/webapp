@@ -1,10 +1,11 @@
-package security.service;
+package hr.tvz.crnkovic.hardwareapp.security.service;
 
+import hr.tvz.crnkovic.hardwareapp.security.command.LoginCommand;
+import hr.tvz.crnkovic.hardwareapp.security.domain.User;
+import hr.tvz.crnkovic.hardwareapp.security.dto.LoginDTO;
+import hr.tvz.crnkovic.hardwareapp.security.repository.UserRepository;
+import org.springframework.security.crypto.bcrypt.BCrypt;
 import org.springframework.stereotype.Service;
-import security.command.LoginCommand;
-import security.domain.User;
-import security.dto.LoginDTO;
-import security.repository.UserRepository;
 
 import java.util.Optional;
 
@@ -33,7 +34,11 @@ public class AuthenticationServiceImpl implements AuthenticationService {
     }
 
     private boolean isMatchingPassword(String rawPassword, String encryptedPassword) {
-        // TODO - implementirati provjeru odgovara li lozinka, koju je unio korisnik, enkriptiranoj lozinki u bazi
+        // TODO - implementirati provjeru odgovara li lozinka,
+        //  koju je unio korisnik, enkriptiranoj lozinki u bazi
+        if(BCrypt.checkpw(rawPassword, encryptedPassword)){
+            return true;
+        }
         throw new UnsupportedOperationException();
     }
 }

@@ -1,11 +1,11 @@
-package security.controller;
+package hr.tvz.crnkovic.hardwareapp.security.controller;
 
+import hr.tvz.crnkovic.hardwareapp.security.command.LoginCommand;
+import hr.tvz.crnkovic.hardwareapp.security.dto.LoginDTO;
+import hr.tvz.crnkovic.hardwareapp.security.service.AuthenticationService;
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.server.ResponseStatusException;
-import security.command.LoginCommand;
-import security.dto.LoginDTO;
-import security.service.AuthenticationService;
 
 import javax.validation.Valid;
 

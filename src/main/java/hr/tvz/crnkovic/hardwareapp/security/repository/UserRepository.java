@@ -1,7 +1,7 @@
-package security.repository;
+package hr.tvz.crnkovic.hardwareapp.security.repository;
 
+import hr.tvz.crnkovic.hardwareapp.security.domain.User;
 import org.springframework.data.jpa.repository.JpaRepository;
-import security.domain.User;
 
 import java.util.Optional;
 

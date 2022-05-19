@@ -1,4 +1,4 @@
-package security.dto;
+package hr.tvz.crnkovic.hardwareapp.security.dto;
 
 public class LoginDTO {
     private final String jwt;

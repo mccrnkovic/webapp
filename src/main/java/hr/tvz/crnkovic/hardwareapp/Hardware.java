@@ -33,18 +33,18 @@ public class Hardware {
     @Enumerated(EnumType.STRING)
     private HardwareType type;
 
-    @Column(name="amount")
-    private Integer amount;
+    @Column(name="stock")
+    private Integer stock;
 
     @OneToMany()
     private List<Review> reviewList;
 
-    public Hardware(String name, String code, Double price, Integer amount, HardwareType type) {
+    public Hardware(String name, String code, Double price, Integer stock, HardwareType type) {
         this.name = name;
         this.code = code;
         this.price = price;
         this.type = type;
-        this.amount= amount;
+        this.stock = stock;
     }
 
     @Override
@@ -64,8 +64,8 @@ public class Hardware {
         return new HardwareDTO(this.name, this.price, this.code);
     }
 
-    public Integer getAmount(){
-        return this.amount;
+    public Integer getStock(){
+        return this.stock;
     }
 
     public String getName() {
@@ -100,7 +100,7 @@ public class Hardware {
         this.type = hardwareType;
     }
 
-    public void setAmount(Integer amount){
-        this.amount=amount;
+    public void setStock(Integer amount){
+        this.stock =amount;
     }
 }

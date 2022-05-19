@@ -1,7 +1,5 @@
 package hr.tvz.crnkovic.hardwareapp;
 
-import org.springframework.context.annotation.Primary;
-
 import javax.validation.constraints.*;
 
 public class HardwareCommand {
@@ -19,14 +17,14 @@ public class HardwareCommand {
     private Hardware.HardwareType type;
 
     @PositiveOrZero(message = "Amount can't be below 0")
-    private Integer amount;
+    private Integer stock;
 
-    public HardwareCommand(String name, String code, Double price, Hardware.HardwareType type, Integer amount) {
+    public HardwareCommand(String name, String code, Double price, Hardware.HardwareType type, Integer stock) {
         this.name = name;
         this.code = code;
         this.price = price;
         this.type = type;
-        this.amount = amount;
+        this.stock = stock;
     }
 
     public String getName() {
@@ -45,7 +43,7 @@ public class HardwareCommand {
         return type;
     }
 
-    public Integer getAmount() {
-        return amount;
+    public Integer getStock() {
+        return stock;
     }
 }

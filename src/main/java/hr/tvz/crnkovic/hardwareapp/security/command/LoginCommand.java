@@ -1,4 +1,4 @@
-package security.command;
+package hr.tvz.crnkovic.hardwareapp.security.command;
 
 import javax.validation.constraints.NotBlank;
 

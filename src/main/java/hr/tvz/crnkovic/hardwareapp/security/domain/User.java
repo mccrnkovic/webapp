@@ -1,4 +1,4 @@
-package security.domain;
+package hr.tvz.crnkovic.hardwareapp.security.domain;
 
 
 import com.fasterxml.jackson.annotation.JsonIgnore;

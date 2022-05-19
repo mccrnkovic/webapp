@@ -1,10 +1,10 @@
-package security;
+package hr.tvz.crnkovic.hardwareapp.security;
 
+import hr.tvz.crnkovic.hardwareapp.security.service.JwtService;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Component;
 import org.springframework.web.filter.OncePerRequestFilter;
-import security.service.JwtService;
 
 import javax.servlet.FilterChain;
 import javax.servlet.ServletException;

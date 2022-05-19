@@ -1,5 +1,9 @@
-package security.service;
+package hr.tvz.crnkovic.hardwareapp.security.service;
 
+import hr.tvz.crnkovic.hardwareapp.security.domain.Authority;
+import hr.tvz.crnkovic.hardwareapp.security.domain.User;
+import hr.tvz.crnkovic.hardwareapp.security.user.ApplicationUser;
+import hr.tvz.crnkovic.hardwareapp.security.user.UserAuthentication;
 import io.jsonwebtoken.*;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -8,10 +12,6 @@ import org.springframework.security.core.Authentication;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Service;
-import security.domain.Authority;
-import security.domain.User;
-import security.user.ApplicationUser;
-import security.user.UserAuthentication;
 
 import java.time.Instant;
 import java.util.Arrays;
