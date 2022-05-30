@@ -42,13 +42,13 @@ public class Controller {
                 .orElseGet(() -> ResponseEntity.status(HttpStatus.NOT_FOUND).build());
     }
 
-    @GetMapping("reviews")
+    /*@GetMapping("review")
     public List<ReviewDTO> findAllReviews(){
         return reviewService.findAll();
-    }
+    }*/
 
-    @GetMapping("reviews/{code}")
-    public List<ReviewDTO> findReviewsByHardwareCode(@PathVariable String code){
+    @GetMapping("review")
+    public List<ReviewDTO> findReviewsByHardwareCode(@RequestParam String code){
         return reviewService.findAllByHardwareCode(code);
     }
 

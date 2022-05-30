@@ -26,7 +26,7 @@ CREATE TABLE IF NOT EXISTS authority (
     authority_name VARCHAR(16)
     );
 
-CREATE TABLE IF NOT EXISTS user_has_authority (
+CREATE TABLE IF NOT EXISTS user_authority (
     user_id INT NOT NULL,
     authority_id INT NOT NULL,
     FOREIGN KEY (user_id) REFERENCES `user`(id),

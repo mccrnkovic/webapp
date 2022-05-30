@@ -38,7 +38,7 @@ public class JdbcHardwareRepository implements HardwareRepository {
                 resultSet.getString("name"),
                 resultSet.getString("hardware_code"),
                 resultSet.getDouble("price"),
-                resultSet.getInt("amount"),
+                resultSet.getInt("stock"),
                 Hardware.HardwareType.valueOf(resultSet.getString("type"))
         );
     }

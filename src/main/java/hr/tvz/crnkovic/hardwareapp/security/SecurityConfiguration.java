@@ -4,6 +4,8 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.http.HttpMethod;
+import org.springframework.security.config.annotation.authentication.builders.AuthenticationManagerBuilder;
 import org.springframework.security.config.annotation.method.configuration.EnableGlobalMethodSecurity;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.builders.WebSecurity;
@@ -29,11 +31,12 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
 
     static final List<String> UNAUTHENTICATED_ENDPOINTS = List.of(
             // TODO - popisati putanje koje ne trebaju biti prolaziti autentifikaciju
-            "hardware",
+            "/hardware",
             "/hardware/{code}",
-            "review",
-            "review?hardwareCode",
-            "h2-console"
+            "/review",
+            "/review?hardwareCode",
+            "/h2-console/**",
+            "/authentication/login"
     );
 
     private final JwtFilter jwtFilter;
@@ -42,13 +45,6 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
     public SecurityConfiguration(JwtFilter jwtFilter) {
         this.jwtFilter = jwtFilter;
         SecurityContextHolder.setStrategyName(SecurityContextHolder.MODE_INHERITABLETHREADLOCAL);
-    }
-
-    @Override
-    public void configure(WebSecurity web) {
-        web
-                .ignoring()
-                .antMatchers("/h2-console/**");
     }
 
     @Override
@@ -76,9 +72,15 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
 
         http.authorizeRequests()
                 .antMatchers(UNAUTHENTICATED_ENDPOINTS.toArray(new String[0])).permitAll()
+                .antMatchers(HttpMethod.POST, "/**").hasRole("ADMIN")
+                .antMatchers(HttpMethod.PUT, "/**").hasRole("ADMIN")
+                .antMatchers(HttpMethod.DELETE, "/**").hasRole("ADMIN")
+                .antMatchers(HttpMethod.POST, "/hardware").hasRole("CREATOR")
                 .anyRequest().authenticated();
+
 
         http.addFilterBefore(jwtFilter, UsernamePasswordAuthenticationFilter.class);
     }
+
 
 }

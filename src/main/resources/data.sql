@@ -9,9 +9,12 @@ INSERT INTO review VALUES (3, 'fine GPU', 'it could be better', 3, 2);
 
 INSERT INTO authority VALUES (0, 'ROLE_ADMIN');
 INSERT INTO authority VALUES (1, 'ROLE_USER');
+INSERT INTO authority VALUES (2, 'ROLE_CREATOR');
 
 INSERT INTO `user` VALUES(0, 'admin', '$2a$12$ta7Yyy0QehvXUAYzGDLAfeP/E5t1HDikWLwebKhzysYt7WEe.OnpS');
 INSERT INTO `user` VALUES(1, 'user', '$2a$12$dT4JTx2gPPzh8q9MzypIXuoqS0teLeWvFnNBd4aPJWZ0lNYBW.aZ2');
+INSERT INTO `user` VALUES(2, 'creator', '$2a$12$dT4JTx2gPPzh8q9MzypIXuoqS0teLeWvFnNBd4aPJWZ0lNYBW.aZ2');
 
-INSERT INTO user_has_authority VALUES(0, 0);
-INSERT INTO user_has_authority VALUES(1, 1);
+INSERT INTO user_authority VALUES(0, 0);
+INSERT INTO user_authority VALUES(1, 1);
+INSERT INTO user_authority VALUES(2, 2);
