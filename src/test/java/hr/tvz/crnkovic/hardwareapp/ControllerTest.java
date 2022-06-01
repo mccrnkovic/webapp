@@ -7,8 +7,11 @@ import org.springframework.boot.test.autoconfigure.web.servlet.AutoConfigureMock
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.http.MediaType;
 import org.springframework.test.web.servlet.MockMvc;
+import org.springframework.test.web.servlet.request.MockMvcRequestBuilders;
 
 import javax.transaction.Transactional;
+
+import java.net.URI;
 
 import static org.junit.jupiter.api.Assertions.*;
 import static org.springframework.security.test.web.servlet.request.SecurityMockMvcRequestPostProcessors.csrf;
@@ -82,6 +85,13 @@ class ControllerTest {
     }
 
     @Test
-    void delete() {
+    @Transactional
+    void deleteHardware() throws Exception {
+        mockMvc.perform(delete("/hardware/0")
+                        .with(user("admin")
+                                .password("admin")
+                                .roles("ADMIN"))
+                        .with(csrf()))
+                .andExpect(status().isNoContent());
     }
 }

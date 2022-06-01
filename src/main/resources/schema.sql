@@ -12,7 +12,7 @@ CREATE TABLE IF NOT EXISTS review (
     text VARCHAR(60),
     rating INT,
     hardware_code INT NOT NULL,
-    FOREIGN KEY (hardware_code) REFERENCES hardware(hardware_code)
+    FOREIGN KEY (hardware_code) REFERENCES hardware(hardware_code) ON DELETE CASCADE
     );
 
 CREATE TABLE IF NOT EXISTS `user` (
