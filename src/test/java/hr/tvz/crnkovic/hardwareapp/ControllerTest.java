@@ -4,6 +4,7 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.web.servlet.AutoConfigureMockMvc;
+import org.springframework.boot.test.autoconfigure.web.servlet.WebMvcTest;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.http.MediaType;
 import org.springframework.test.web.servlet.MockMvc;
@@ -29,6 +30,8 @@ class ControllerTest {
     private MockMvc mockMvc;
     private static HardwareCommand hardwareCommand = new HardwareCommand("NEWHW", "22",
             29.99, Hardware.HardwareType.OTHER, 99);
+    private static HardwareCommand wrongCommand = new HardwareCommand("", "23",
+            28.0, Hardware.HardwareType.OTHER, 900);
     private ObjectMapper objectMapper = new ObjectMapper();
 
     @Autowired
@@ -93,5 +96,19 @@ class ControllerTest {
                                 .roles("ADMIN"))
                         .with(csrf()))
                 .andExpect(status().isNoContent());
+    }
+
+    @Test
+    @Transactional
+    void newHardware() throws Exception {
+
+        mockMvc.perform(post("/hardware").with(user("admin")
+                        .password("admin")
+                        .roles("ADMIN"))
+                .with(csrf())
+                .contentType(MediaType.APPLICATION_JSON)
+                .content(objectMapper.writeValueAsString(wrongCommand)))
+                .andExpect(status().isBadRequest());
+
     }
 }

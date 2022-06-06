@@ -11,7 +11,6 @@ public class Review {
 
     @Id
     @Column(name="id")
-    @GeneratedValue(strategy = GenerationType.AUTO)
     private Integer id;
 
     @Column(name="title")
